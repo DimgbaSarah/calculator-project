@@ -1,13 +1,5 @@
 'use strict';
 
-// ======================
-// 🧹 REMOVE DUPLICATES
-// ======================
-// Removed duplicate event listeners for .btn-AC, .square-btn, .btn-7, etc.
-
-// ======================
-// 📦 CLASS-BASED HANDLING
-// ======================
 class Calculator {
   constructor() {
     this.currentInput = '0';
@@ -15,6 +7,7 @@ class Calculator {
     this.operator = null;
     this.resetScreen = false;
     this.memory = 0;
+
     this.display = document.querySelector('.display');
     this.tempDisplay = document.querySelector('.temp');
 
@@ -23,15 +16,15 @@ class Calculator {
   }
 
   initializeButtons() {
-    const buttonActions = {
+    const actions = {
       '.btn-AC': () => this.clearAll(),
       '.clear-btn': () => this.clearAll(),
       '.delete-btn': () => this.deleteLastChar(),
       '.power-btn': () => this.powerOff(),
       '.btn-plus': () => this.setOperator('+'),
       '.btn-minus': () => this.setOperator('-'),
-      '.btn-div': () => this.setOperator('÷'),
-      '.btn-multiply': () => this.setOperator('×'),
+      '.btn-div': () => this.setOperator('/'),
+      '.btn-multiply': () => this.setOperator('*'),
       '.btn-equal': () => this.calculate(),
       '.btn-dot': () => this.addDecimal(),
       '.btn-sign': () => this.toggleSign(),
@@ -44,18 +37,15 @@ class Calculator {
       '.btn-m-': () => this.memorySubtract(),
     };
 
-    Object.entries(buttonActions).forEach(([selector, handler]) => {
-      this.addButtonListener(selector, handler);
+    Object.entries(actions).forEach(([selector, handler]) => {
+      const button = document.querySelector(selector);
+      if (button) button.addEventListener('click', handler);
     });
 
     for (let i = 0; i <= 9; i++) {
-      this.addButtonListener(`.btn-${i}`, () => this.appendNumber(i.toString()));
+      const numberBtn = document.querySelector(`.btn-${i}`);
+      if (numberBtn) numberBtn.addEventListener('click', () => this.appendNumber(i.toString()));
     }
-  }
-
-  addButtonListener(selector, callback) {
-    const btn = document.querySelector(selector);
-    if (btn) btn.addEventListener('click', callback);
   }
 
   updateDisplay() {
@@ -73,8 +63,8 @@ class Calculator {
 
   powerOff() {
     this.currentInput = 'OFF';
-    if (this.tempDisplay) this.tempDisplay.value = '';
     this.updateDisplay();
+    if (this.tempDisplay) this.tempDisplay.value = '';
     setTimeout(() => this.clearAll(), 1000);
   }
 
@@ -123,10 +113,18 @@ class Calculator {
       this.currentInput = 'Error';
     } else {
       switch (this.operator) {
-        case '+': this.currentInput = (prev + curr).toString(); break;
-        case '-': this.currentInput = (prev - curr).toString(); break;
-        case '×': this.currentInput = (prev * curr).toString(); break;
-        case '÷': this.currentInput = curr === 0 ? 'Error' : (prev / curr).toString(); break;
+        case '+':
+          this.currentInput = (prev + curr).toString();
+          break;
+        case '-':
+          this.currentInput = (prev - curr).toString();
+          break;
+        case '*':
+          this.currentInput = (prev * curr).toString();
+          break;
+        case '/':
+          this.currentInput = curr === 0 ? 'Cannot divide by zero' : (prev / curr).toString();
+          break;
       }
     }
 
@@ -154,6 +152,7 @@ class Calculator {
 
   memoryClear() {
     this.memory = 0;
+    this.tempDisplay.value = 'Memory: 0';
   }
 
   memoryRecall() {
@@ -163,12 +162,13 @@ class Calculator {
 
   memoryAdd() {
     this.memory += parseFloat(this.currentInput) || 0;
+    this.tempDisplay.value = `Memory: ${this.memory}`;
   }
 
   memorySubtract() {
     this.memory -= parseFloat(this.currentInput) || 0;
+    this.tempDisplay.value = `Memory: ${this.memory}`;
   }
 }
 
-// Initialize calculator
 window.addEventListener('DOMContentLoaded', () => new Calculator());
