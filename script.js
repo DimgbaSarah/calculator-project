@@ -1,197 +1,61 @@
-'use strict;'
-  
-  document.querySelector('.btn-AC').addEventListener('click', function() {
-    document.querySelector('.display').value='ON';
-      document.querySelector('.temp').value='28°C';
+'use strict';
 
-      
-});
+// ======================
+// 🧹 REMOVE DUPLICATES
+// ======================
+// Removed duplicate event listeners for .btn-AC, .square-btn, .btn-7, etc.
 
-document.querySelector('.clear-btn').addEventListener('click', function(){
-    document.querySelector('.display').value = '';
-})
-
-document.querySelector('.delete-btn').addEventListener('click', function(){
-    document.querySelector('.display').value = '';
-})
-
-document.querySelector('.power-btn').addEventListener('click', function(){
-    document.querySelector('.display').value = '';
-    document.querySelector('.temp').value='';
-})
- 
-document.querySelector('.square-btn').addEventListener('click', function (){
-    document.querySelector('.display').value= '√'
- })
-// square
-  document.querySelector('.square-btn').addEventListener('click', function (){
-    document.querySelector('.display').value= ''
-
-  })
-
-// div
-  document.querySelector('.btn-div').addEventListener('click', function (){
-    document.querySelector('.display').value='÷'
-  })
-
-  // percent
-
-  document.querySelector('.btn-percent').addEventListener('click', function(){
-    document.querySelector('.display').value= "%" 
-  })
-
-
-  // 7
-
-  document.querySelector('.btn-7').addEventListener('click', function(){
-    document.querySelector('.display').value= "7" ;
-    clickCounter++;
-    
-    
-  })
-  
-  document.querySelector('.btn-7').addEventListener('click', function(){
-    document.querySelector('.display').value= "7" ;
-    
-    
-    
-  })
-
-  //8
-  document.querySelector('.btn-8').addEventListener('click', function(){
-    document.querySelector('.display').value= "8" 
-  })
-
-  // 9
-
-  document.querySelector('.btn-9').addEventListener('click', function(){
-    document.querySelector('.display').value= "9" 
-  })
-
-  // minus
-  document.querySelector('.btn-minus').addEventListener('click', function(){
-    document.querySelector('.display').value= "-" 
-  })
-
-  //btn +/- yet to work??
-
- document.querySelector('.btn-sign').addEventListener('click', function(){
-    document.querySelector('.display').value= "+" ||"-" 
-  })
-
-
-  // btn 4
-   document.querySelector('.btn-4').addEventListener('click', function(){
-    document.querySelector('.display').value= "4" 
-  })
-
-  // btn 5
-   document.querySelector('.btn-5').addEventListener('click', function(){
-    document.querySelector('.display').value= "5" 
-  })
-
-  // btn 6
-   document.querySelector('.btn-6').addEventListener('click', function(){
-    document.querySelector('.display').value= "6" 
-  })
-  // btn cuberoot
-   document.querySelector('.btn-cuberoot').addEventListener('click', function(){
-    document.querySelector('.display').value= "∛" 
-  })
-
-   // btn C
-   document.querySelector('.btn-multiply').addEventListener('click', function(){
-    document.querySelector('.display').value= "*" 
-  })
-
-   // btn 1
-   document.querySelector('.btn-1').addEventListener('click', function(){
-    document.querySelector('.display').value= "1" 
-  })
-   // btn 2
-   document.querySelector('.btn-2').addEventListener('click', function(){
-    document.querySelector('.display').value= "2" 
-  })
-// btn 3
-   document.querySelector('.btn-3').addEventListener('click', function(){
-    document.querySelector('.display').value= "3" 
-  })
-  
- //btn Ac
-   document.querySelector('.btn-AC').addEventListener('click', function(){
-    document.querySelector('.display').value= "" 
-  })
-
-  
-// btn 0
-   document.querySelector('.btn-0').addEventListener('click', function(){
-    document.querySelector('.display').value= "0" 
-  })
-
-  // btn equal
-   document.querySelector('.btn-equal').addEventListener('click', function(){
-    document.querySelector('.display').value= "" 
-  })
-
-  // btn plus
-   document.querySelector('.btn-plus').addEventListener('click', function(){
-    document.querySelector('.display').value= "+" 
-  })
-
-  
-  class Calculator {
+// ======================
+// 📦 CLASS-BASED HANDLING
+// ======================
+class Calculator {
   constructor() {
     this.currentInput = '0';
     this.previousInput = '';
     this.operator = null;
     this.resetScreen = false;
     this.memory = 0;
-    
     this.display = document.querySelector('.display');
-    //this.tempDisplay = document.querySelector('.temp');
-    
+    this.tempDisplay = document.querySelector('.temp');
+
     this.initializeButtons();
     this.updateDisplay();
   }
 
   initializeButtons() {
-    // Clear buttons
-    this.addButtonListener('.btn-AC', () => this.clearAll());
-    this.addButtonListener('.clear-btn', () => this.clearAll());
-    this.addButtonListener('.delete-btn', () => this.deleteLastChar());
-    this.addButtonListener('.power-btn', () => this.powerOff());
+    const buttonActions = {
+      '.btn-AC': () => this.clearAll(),
+      '.clear-btn': () => this.clearAll(),
+      '.delete-btn': () => this.deleteLastChar(),
+      '.power-btn': () => this.powerOff(),
+      '.btn-plus': () => this.setOperator('+'),
+      '.btn-minus': () => this.setOperator('-'),
+      '.btn-div': () => this.setOperator('÷'),
+      '.btn-multiply': () => this.setOperator('×'),
+      '.btn-equal': () => this.calculate(),
+      '.btn-dot': () => this.addDecimal(),
+      '.btn-sign': () => this.toggleSign(),
+      '.btn-percent': () => this.handlePercentage(),
+      '.square-btn': () => this.handleSquareRoot(),
+      '.btn-cuberoot': () => this.handleCubeRoot(),
+      '.btn-mc': () => this.memoryClear(),
+      '.btn-mr': () => this.memoryRecall(),
+      '.btn-mplus': () => this.memoryAdd(),
+      '.btn-m-': () => this.memorySubtract(),
+    };
 
-    // Number buttons
+    Object.entries(buttonActions).forEach(([selector, handler]) => {
+      this.addButtonListener(selector, handler);
+    });
+
     for (let i = 0; i <= 9; i++) {
       this.addButtonListener(`.btn-${i}`, () => this.appendNumber(i.toString()));
     }
-
-    // Operator buttons
-    this.addButtonListener('.btn-plus', () => this.setOperator('+'));
-    this.addButtonListener('.btn-minus', () => this.setOperator('-'));
-    this.addButtonListener('.btn-div', () => this.setOperator('÷'));
-    this.addButtonListener('.btn-multiply', () => this.setOperator('×'));
-
-    // Special functions
-    this.addButtonListener('.btn-equal', () => this.calculate());
-    this.addButtonListener('.btn-dot', () => this.addDecimal());
-    this.addButtonListener('.btn-sign', () => this.toggleSign());
-    this.addButtonListener('.btn-percent', () => this.handlePercentage());
-    this.addButtonListener('.square-btn', () => this.handleSquareRoot());
-    this.addButtonListener('.btn-cuberoot', () => this.handleCubeRoot());
-
-    // Memory functions
-    this.addButtonListener('.btn-mc', () => this.memoryClear());
-    this.addButtonListener('.btn-mr', () => this.memoryRecall());
-    this.addButtonListener('.btn-mplus', () => this.memoryAdd());
-    this.addButtonListener('.btn-m-', () => this.memorySubtract());
   }
 
   addButtonListener(selector, callback) {
-    const button = document.querySelector(selector);
-    if (button) {
-      button.addEventListener('click', callback);
-    }
+    const btn = document.querySelector(selector);
+    if (btn) btn.addEventListener('click', callback);
   }
 
   updateDisplay() {
@@ -203,7 +67,7 @@ document.querySelector('.square-btn').addEventListener('click', function (){
     this.previousInput = '';
     this.operator = null;
     this.resetScreen = false;
-    if (this.tempDisplay) this.tempDisplay.value = ''; // Removed the "28°C" display
+    if (this.tempDisplay) this.tempDisplay.value = '';
     this.updateDisplay();
   }
 
@@ -211,39 +75,25 @@ document.querySelector('.square-btn').addEventListener('click', function (){
     this.currentInput = 'OFF';
     if (this.tempDisplay) this.tempDisplay.value = '';
     this.updateDisplay();
-    setTimeout(() => {
-      this.clearAll();
-    }, 1000);
+    setTimeout(() => this.clearAll(), 1000);
   }
 
   deleteLastChar() {
-    if (this.currentInput.length === 1) {
-      this.currentInput = '0';
-    } else {
-      this.currentInput = this.currentInput.slice(0, -1);
-    }
+    this.currentInput = this.currentInput.length === 1 ? '0' : this.currentInput.slice(0, -1);
     this.updateDisplay();
   }
 
-  appendNumber(number) {
-    if (this.currentInput === '0' || this.resetScreen) {
-      this.currentInput = number;
-      this.resetScreen = false;
-    } else {
-      this.currentInput += number;
-    }
+  appendNumber(num) {
+    this.currentInput = this.currentInput === '0' || this.resetScreen ? num : this.currentInput + num;
+    this.resetScreen = false;
     this.updateDisplay();
   }
 
-  setOperator(newOperator) {
-    if (this.currentInput === '0' && this.previousInput === '') return;
-    
-    if (this.operator !== null && !this.resetScreen) {
-      this.calculate();
-    }
-    
+  setOperator(op) {
+    if (!this.currentInput && !this.previousInput) return;
+    if (this.operator && !this.resetScreen) this.calculate();
     this.previousInput = this.currentInput;
-    this.operator = newOperator;
+    this.operator = op;
     this.resetScreen = true;
     if (this.tempDisplay) this.tempDisplay.value = `${this.previousInput} ${this.operator}`;
   }
@@ -257,45 +107,29 @@ document.querySelector('.square-btn').addEventListener('click', function (){
     if (this.resetScreen) {
       this.currentInput = '0.';
       this.resetScreen = false;
-      return;
-    }
-    if (!this.currentInput.includes('.')) {
+    } else if (!this.currentInput.includes('.')) {
       this.currentInput += '.';
     }
     this.updateDisplay();
   }
 
   calculate() {
-    if (this.operator === null || this.resetScreen) return;
-    
+    if (!this.operator || this.resetScreen) return;
+
     const prev = parseFloat(this.previousInput);
-    const current = parseFloat(this.currentInput);
-    
-    if (Number.isNaN(prev) || Number.isNaN(current)) {
+    const curr = parseFloat(this.currentInput);
+
+    if (isNaN(prev) || isNaN(curr)) {
       this.currentInput = 'Error';
-      this.updateDisplay();
-      return;
+    } else {
+      switch (this.operator) {
+        case '+': this.currentInput = (prev + curr).toString(); break;
+        case '-': this.currentInput = (prev - curr).toString(); break;
+        case '×': this.currentInput = (prev * curr).toString(); break;
+        case '÷': this.currentInput = curr === 0 ? 'Error' : (prev / curr).toString(); break;
+      }
     }
-    
-    let result;
-    switch (this.operator) {
-      case '+':
-        result = prev + current;
-        break;
-      case '-':
-        result = prev - current;
-        break;
-      case '×':
-        result = prev * current;
-        break;
-      case '÷':
-        result = current === 0 ? 'Error' : prev / current;
-        break;
-      default:
-        return;
-    }
-    
-    this.currentInput = result.toString();
+
     this.operator = null;
     this.resetScreen = true;
     if (this.tempDisplay) this.tempDisplay.value = '';
@@ -336,7 +170,5 @@ document.querySelector('.square-btn').addEventListener('click', function (){
   }
 }
 
-// Initialize the calculator when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new Calculator();
-});
+// Initialize calculator
+window.addEventListener('DOMContentLoaded', () => new Calculator());
