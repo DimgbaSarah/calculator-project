@@ -14,11 +14,10 @@ body {
   min-height: 100vh;
 }
 
-/* Responsive & Clean Container */
+/* Calculator Container */
 .big-cont {
   width: 90%;
   max-width: 400px;
-  height: auto;
   border-radius: 12px;
   padding: 20px;
   background-color: #f0f0f0;
@@ -31,6 +30,7 @@ h1 {
   margin-bottom: 15px;
 }
 
+/* Display Screen */
 .display {
   text-align: right;
   font-size: 2rem;
@@ -88,6 +88,7 @@ button:active,
   transform: scale(0.95);
 }
 
+/* Specific Buttons */
 .clear-btn {
   background-color: orangered;
 }
@@ -97,9 +98,33 @@ button:active,
   margin-left: 10px;
 }
 
-/* Special button sizes */
 .btn-plus {
   height: 118px;
+}
+
+/* Unlabeled Button Fixes Using ::after */
+.btn-div::after {
+  content: '÷';
+}
+
+.btn-multiply::after {
+  content: '×';
+}
+
+.square-btn::after {
+  content: '√';
+}
+
+.btn-cuberoot::after {
+  content: '∛';
+}
+
+.btn-mplus::after {
+  content: 'M+';
+}
+
+.btn-m-::after {
+  content: 'M-';
 }
 
 /* Responsive adjustments */
@@ -111,8 +136,11 @@ button:active,
   button,
   .clear-btn,
   .delete-btn {
-    padding: 12px;
-    font-size: 0.9rem;
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+
+  .btn-plus {
+    height: auto;
   }
 }
-
