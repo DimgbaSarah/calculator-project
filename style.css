@@ -1,361 +1,118 @@
-*{
-    box-sizing: border-box;
+/* Universal Styles */
+* {
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-     font-family: 'Times New Roman', Times, serif ;
-     background-color: whitesmoke;
-     margin-top: 40px;
-     display: flex;
-     justify-content: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.big-cont{
-border: 1px solid black;
-background-color: grey;
-    width: 400px;
-    height: 600px;
-    border-radius: 10px;
-    
-}
-.temp{
-    width: 120px;
-    height: 40px;
-    background-color: black;
-    margin-top: 22px;
-    margin-left: 260px;
-    color: aliceblue;
-    text-align: center;
-    padding: 10px;
-}
-h1{
-    font-size: 1.4rem;
-    display: inline;
-position: relative;
-left: 20px;
-bottom: 28px;
-
-    
-    
+/* Responsive & Clean Container */
+.big-cont {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.display{
-    text-align: right;
-    font-size: 1.2rem;
-    margin-top: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 360px;
-    height: 70px;
-    background-color: 	#B2BEB5;
-}
-/*
-.btn{
-   display: flex;
-   
-}
-   */
-
-   .power-btn{
-    position: absolute;
-    top: 32%;
-    margin-left: 270px;
-    width: 47px;
-    height: 50px;
-    background-color: #333;
-    padding:5px;
-    font-size: 1.2rem;
-    font-weight: bolder;
-    color: whitesmoke;
-    
-  
+h1 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-.square-btn{
-     position: absolute;
-    top: 32%;
-    margin-left:  330px ;
-    width: 47px;
-    height: 50px;
-    background-color: #333;
-     padding:10px;
-    font-size: 1rem;
-    font-weight: bolder;
-    color: whitesmoke;
-
+.display {
+  text-align: right;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 70px;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
 }
 
-.clear-btn{
-     font-size: 1rem;
-    margin-top: 22px;
-    margin-left:20px ;
-width: 110px;
-height: 50px;
-background-color: rgba(255, 68, 0, 0.767);
+/* Button Grid Rows */
+.btn-row1,
+.btn-row2,
+.btn-row3,
+.btn-row4,
+.btn-row5 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.delete-btn{
-     font-size: 1rem;
-      margin-left:10px ;
-   width: 110px;
-height: 50px;
-background-color: violet; 
+/* Common Button Styling */
+button,
+.clear-btn,
+.delete-btn {
+  flex: 1;
+  margin-right: 6px;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  background-color: #333;
+  color: white;
 }
 
-.btn-row1{
-    
-    display: flex;
-    justify-content: space-evenly;
-    width: 360px;
-    height: 50px;
-    margin-top: 18px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-.btn-mc{
-    color:  whitesmoke;
-    font-size: 1rem;
-    width: 68px;
-    height: 50px;
-     background-color: #333;
+button:last-child,
+.clear-btn:last-child,
+.delete-btn:last-child {
+  margin-right: 0;
 }
 
-.btn-mr{
-      color:  whitesmoke;
-    font-size: 1rem;
-    width: 65px;
-    margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-}
-.btn-m-{
-      color:  whitesmoke;
-    font-size: 1rem;
-      width: 65px;
-       margin-left: 5px;
-    height: 50px;
-    background-color: #333;
-
-}
-.btn-mplus{
-      color:  whitesmoke;
-    font-size: 1rem;
-         width: 65px;
-          margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-
-}
-.btn-div{
-      color:  whitesmoke;
-    font-size: 1rem;
-     width: 65px;
-      margin-left:5px;
-    height: 50px;
-     background-color: #333; 
+button:hover,
+.clear-btn:hover,
+.delete-btn:hover {
+  background-color: #555;
 }
 
-
-
-.btn-row2{
-    display: flex;
-    justify-content: space-evenly;
-    width: 360px;
-    height: 50px;
-    margin-top: 18px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-.btn-percent{
-    color:  whitesmoke;
-    font-size: 1rem;
-    width: 68px;
-    height: 50px;
-     background-color: #333;
+button:active,
+.clear-btn:active,
+.delete-btn:active {
+  transform: scale(0.95);
 }
 
-.btn-7{
-      color:  whitesmoke;
-    font-size: 1rem;
-    width: 65px;
-    margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-}
-.btn-8{
-      color:  whitesmoke;
-    font-size: 1rem;
-      width: 65px;
-       margin-left: 5px;
-    height: 50px;
-    background-color: #333;
-
-}
-.btn-9{
-      color:  whitesmoke;
-    font-size: 1rem;
-         width: 65px;
-          margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-
-}
-.btn-minus{
-      color:  whitesmoke;
-    font-size: 1rem;
-     width: 65px;
-      margin-left:5px;
-    height: 50px;
-     background-color: #333; 
+.clear-btn {
+  background-color: orangered;
 }
 
-
-.btn-row3{
-    display: flex;
-    justify-content: space-evenly;
-    width: 360px;
-    height: 50px;
-    margin-top: 18px;
-    margin-left: 20px;
-    margin-right: 20px;
+.delete-btn {
+  background-color: violet;
+  margin-left: 10px;
 }
 
-.btn-sign{
-    color:  whitesmoke;
-    font-size: 1rem;
-    width: 68px;
-    height: 50px;
-     background-color: #333;
+/* Special button sizes */
+.btn-plus {
+  height: 118px;
 }
 
-.btn-4{
-      color:  whitesmoke;
-    font-size: 1rem;
-    width: 65px;
-    margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-}
-.btn-5{
-      color:  whitesmoke;
-    font-size: 1rem;
-      width: 65px;
-       margin-left: 5px;
-    height: 50px;
-    background-color: #333;
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .display {
+    font-size: 1.5rem;
+  }
 
-}
-.btn-6{
-      color:  whitesmoke;
-    font-size: 1rem;
-         width: 65px;
-          margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-
-}
-.btn-cuberoot{
-      color:  whitesmoke;
-    font-size: 1rem;
-     width: 65px;
-      margin-left:5px;
-    height: 50px;
-     background-color: #333; 
+  button,
+  .clear-btn,
+  .delete-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
 }
 
-.btn-row4{
-    display: flex;
-    justify-content: space-evenly;
-    width: 360px;
-    height: 50px;
-    margin-top: 18px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.btn-multiply{
-    color:  whitesmoke;
-    font-size: 1rem;
-    width: 68px;
-    height: 50px;
-     background-color: #333;
-}
-
-.btn-1{
-      color:  whitesmoke;
-    font-size: 1rem;
-    width: 65px;
-    margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-}
-.btn-2{
-      color:  whitesmoke;
-    font-size: 1rem;
-      width: 65px;
-       margin-left: 5px;
-    height: 50px;
-    background-color: #333;
-
-}
-.btn-3{
-      color:  whitesmoke;
-    font-size: 1rem;
-         width: 65px;
-          margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-
-}
-.btn-plus{
-      color:  whitesmoke;
-    font-size: 1rem;
-     width: 65px;
-      margin-left:5px;
-    height: 118px;
-     background-color: #333; 
-}
-.btn-row5{
-    width: 360px;
-    height: 50px;
-    margin-top:18px;
-    margin-left: 18px;
-    margin-right: 20px;
-}
-
-.btn-AC{
-    color:  whitesmoke;
-    font-size: 1rem;
-    width: 68px;
-    height: 50px;
-     background-color: #333;
-}
-
-.btn-0{
-      color:  whitesmoke;
-    font-size: 1rem;
-    width: 65px;
-    margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-}
-.btn-dot{
-      color:  whitesmoke;
-    font-size: 1rem;
-      width: 65px;
-       margin-left: 5px;
-    height: 50px;
-    background-color: #333;
-
-}
-.btn-equal{
-      color:  whitesmoke;
-    font-size: 1rem;
-         width: 65px;
-          margin-left: 5px;
-    height: 50px;
-     background-color: #333;
-
-}
