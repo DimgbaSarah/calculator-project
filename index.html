@@ -2,69 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator project</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator Project</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class=" big-cont">
-        <input type="button" value="28°C" class="temp">
-        <h1>Adefabi</h1>
+  <div class="big-cont">
+    <h1>Sarah</h1>
 
-        <input type="button" class="display" value="0">
-        <div class="btn">
-            <button type="button" class="power-btn" data-action="power">Off</button>
-            <button type="button" class="square-btn" data-action="sqrt"> √</button>
-            <input type="button" value="CLEAR" class="clear-btn" data-action="clear">
+    <!-- Fixed: Display input for results -->
+    <input type="text" class="display" value="0" readonly placeholder="0">
 
-            <input type="button" value="DELETE" class="delete-btn" data-action="delete">
+    <div class="btn">
+      <!-- Power & Square root -->
+      <button type="button" class="power-btn" data-action="power" aria-label="Power Off">Off</button>
+      <button type="button" class="square-btn" data-action="sqrt" aria-label="Square Root">√</button>
 
-            <div class="btn-row1">
-                <button type="button" class="btn-mc" data-memory="clear">MC</button>
-                <button type="button" class="btn-mr" data-memory="recall">MR</button>
-                <button type="button" class="btn-m-">M-</button>
-                <button type="button" class="btn-mplus">M+</button>
-                <button type="button" class="btn-div">÷</button>
-            </div>
-            <div class="btn-row2">
-                <button type="button" class="btn-percent">%</button>
-                <button type="button" class="btn-7">7</button>
-                <button type="button" class="btn-8">8</button>
-                <button type="button" class="btn-9">9</button>
-                <button type="button" class="btn-minus">-</button>
-            </div>
-            <div class="btn-row3">
-                <button type="button" class="btn-sign">+/-</button>
-                <button type="button" class="btn-4">4</button>
-                <button type="button" class="btn-5">5</button>
-                <button type="button" class="btn-6">6</button>
-                <button type="button" class="btn-cuberoot">∛</button>
-            </div>
-            <div class="btn-row4">
-                <button type="button" class="btn-multiply">*</button>
-                <button type="button" class="btn-1">1</button>
-                <button type="button" class="btn-2">2</button>
-                <button type="button" class="btn-3">3</button>
-                <button type="button" class="btn-plus">+</button>
-            </div>
-            <div class="btn-row5">
-                <button type="button" class="btn-AC">AC</button>
-                <button type="button" class="btn-0">0</button>
-                <button type="button" class="btn-dot">.</button>
-                <button type="button" class="btn-equal">=</button>
+      <!-- Clear & Delete -->
+      <button type="button" class="clear-btn" data-action="clear" aria-label="Clear">CLEAR</button>
+      <button type="button" class="delete-btn" data-action="delete" aria-label="Delete">DELETE</button>
 
-            </div>
+      <!-- Row 1 -->
+      <div class="btn-row1">
+        <button type="button" class="btn-mc" data-memory="clear" aria-label="Memory Clear">MC</button>
+        <button type="button" class="btn-mr" data-memory="recall" aria-label="Memory Recall">MR</button>
+        <button type="button" class="btn-m-" aria-label="Memory Minus">M-</button>
+        <button type="button" class="btn-mplus" aria-label="Memory Plus">M+</button>
+        <button type="button" class="btn-div" aria-label="Divide">÷</button>
+      </div>
 
+      <!-- Row 2 -->
+      <div class="btn-row2">
+        <button type="button" class="btn-percent" aria-label="Percent">%</button>
+        <button type="button" class="btn-7" aria-label="7">7</button>
+        <button type="button" class="btn-8" aria-label="8">8</button>
+        <button type="button" class="btn-9" aria-label="9">9</button>
+        <button type="button" class="btn-minus" aria-label="Minus">−</button>
+      </div>
 
+      <!-- Row 3 -->
+      <div class="btn-row3">
+        <button type="button" class="btn-sign" aria-label="Toggle Sign">+/-</button>
+        <button type="button" class="btn-4" aria-label="4">4</button>
+        <button type="button" class="btn-5" aria-label="5">5</button>
+        <button type="button" class="btn-6" aria-label="6">6</button>
+        <button type="button" class="btn-cuberoot" aria-label="Cube Root">∛</button>
+      </div>
 
-        </div>
+      <!-- Row 4 -->
+      <div class="btn-row4">
+        <button type="button" class="btn-multiply" aria-label="Multiply">×</button>
+        <button type="button" class="btn-1" aria-label="1">1</button>
+        <button type="button" class="btn-2" aria-label="2">2</button>
+        <button type="button" class="btn-3" aria-label="3">3</button>
+        <button type="button" class="btn-plus" aria-label="Plus">+</button>
+      </div>
 
+      <!-- Row 5 -->
+      <div class="btn-row5">
+        <button type="button" class="btn-AC" aria-label="All Clear">AC</button>
+        <button type="button" class="btn-0" aria-label="0">0</button>
+        <button type="button" class="btn-dot" aria-label="Decimal Point">.</button>
+        <button type="button" class="btn-equal" aria-label="Equals">=</button>
+      </div>
     </div>
+  </div>
 
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
